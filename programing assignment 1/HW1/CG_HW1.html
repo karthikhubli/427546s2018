@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CG Assignment-1</title>
+<meta name="description" content="The HTML5 Herald">
+<meta name="author" content="SitePoint">
+<link rel="stylesheet" href="CG_HW1-style.css">
+</head>
+
+<body style="background-color:hsl(0, 0%, 74%);">
+	<h1 align="center">Computer Graphics Assignment 1</h1>
+	<div>
+		<input type="radio" name="shape" value="line" onclick="showForm(this)">
+		Line <input type="radio" name="shape" value="circle"
+			onclick="showForm(this)"> Circle <input type="radio"
+			name="shape" value="ellipse" onclick="showForm(this)">
+		Ellipse <input type="radio" name="shape" value="polygon"
+			onclick="showForm(this)"> Reg polygon <input type="radio"
+			name="shape" value="polyline" onclick="showForm(this)">
+		polyline<input type="radio"
+			name="shape" value="rectangle" onclick="showForm(this)">
+		rectangle
+	</div>
+	<div>Stroke:<input type="color" id="strokeColor"></div>
+	<div id="polygonRange" style="display:none">
+		<input type="range" min="3" max="15" value="3" class="slider"
+			id="numberOfSides" oninput="numberOfSidesV.value = numberOfSides.value">
+			<output name="numberOfSidesV" id="numberOfSidesV" value='3'>3</output>
+	</div>
+	<br />
+	<div>
+		<button type="button" onclick="clearCanvas()">Clear</button>
+	</div>
+
+	<br />
+	<canvas id="myCanvas"
+		style="border: 1px solid #A00000; background-color: #FFFFA0;"></canvas>
+	<script src="CG_HW1-scripts.js"></script>
+</body>
+</html>
