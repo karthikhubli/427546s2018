@@ -1,16 +1,17 @@
 var canvas,
 	ctx;
 //To manipulate a pixel
-var pixId,d;
+var pixId,
+	d;
 var dragging = false;
-var initialPoint=0;
+var initialPoint = 0;
 var state;
-var drawLn=false;
+var drawLn = false;
 var drawCirc = false;
 var drawEll = false;
-var drawPolygon=false;
-var drawPolyline=false;
-var drawRect=false;
+var drawPolygon = false;
+var drawPolyline = false;
+var drawRect = false;
 
 var pixelSize = 1;
 var col = hexToRGB(document.getElementById("strokeColor").value);
@@ -28,7 +29,7 @@ function init() {
 	console.log('Inside init()')
 	canvas = document.querySelector('canvas');
 	ctx = canvas.getContext("2d");
-	canvas.width = (window.innerWidth);
+	canvas.width = 0.75 * (window.innerWidth);
 	canvas.height = 0.7 * (window.innerHeight);
 
 	pixId = ctx.createImageData(pixelSize, pixelSize);
@@ -39,19 +40,19 @@ function init() {
 	canvas.addEventListener('mouseup', endPoint, false);
 }
 
-function drawShape(position){
+function drawShape(position) {
 	if (drawCirc) {
 		drawCircle(position);
 	} else if (drawEll) {
 		drawEllipse(position);
-	} else if(drawLn){
+	} else if (drawLn) {
 		//drawLineRb(position);
 		drawLine(position);
-	}else if(drawPolygon){
+	} else if (drawPolygon) {
 		drawPoly(position);
-	}else if(drawPolyline){
+	} else if (drawPolyline) {
 		drawPolyln(position);
-	}else if(drawRect){
+	} else if (drawRect) {
 		drawRectangle(position);
 	}
 }
@@ -59,8 +60,9 @@ function startPoint(event) {
 	console.log('Inside startPoint(' + getCanvasCoordinates(event).x + ',' + getCanvasCoordinates(event).y + ')');
 	col = hexToRGB(document.getElementById("strokeColor").value);
 	dragging = true;
-	if(initialPoint ==0 || !drawPolyline){
-	initialPoint = getCanvasCoordinates(event);}
+	if (initialPoint == 0 || !drawPolyline) {
+		initialPoint = getCanvasCoordinates(event);
+	}
 	recordState();
 }
 function drag(event) {
@@ -73,13 +75,13 @@ function drag(event) {
 	}
 }
 function endPoint(event) {
-	console.log('Inside endPoint('+getCanvasCoordinates(event).x+','+getCanvasCoordinates(event).y+')')
+	console.log('Inside endPoint(' + getCanvasCoordinates(event).x + ',' + getCanvasCoordinates(event).y + ')')
 	dragging = false;
 	var position = getCanvasCoordinates(event);
 	setState();
 	drawShape(position);
-	if(drawPolyline){
-		initialPoint=position;
+	if (drawPolyline) {
+		initialPoint = position;
 	}
 }
 
@@ -116,11 +118,11 @@ function drawLine(position) {
 		y1 = y2;
 		y2 = temp;
 	}
-	if (y1 > y2){
-		incry = -1;}
-	else{
-		incry = 1;}
-
+	if (y1 > y2) {
+		incry = -1;
+	} else {
+		incry = 1;
+	}
 	var del = 2 * dy - dx;
 	var goE = 2 * dy;
 	var goNE = 2 * (dy - dx);
@@ -145,20 +147,18 @@ function drawCircle(pos) {
 	ctx.arc(initialPoint.x, initialPoint.y, r, 0, 2 * Math.PI);
 	ctx.stroke();*/
 	var p;
-	var x,y;
+	var x,
+		y;
 	var xc = initialPoint.x;
 	var yc = initialPoint.y;
 	p = 1 - r;
 	x = 0;
 	y = r;
-
 	transform(x, y, xc, yc);
 
 	while (x <= y) {
-
 		x++;
 		if (p < 0) {
-
 			p += 2 * x + 1;
 		} else {
 			p += 2 * (x - y) + 1;
@@ -189,7 +189,7 @@ function drawEllipse(pos) {
 	var stoppingY = 0;
 
 	while (stoppingX >= stoppingY) {
-		setPoints(X,x0,Y,y0)
+		setPoints(X, x0, Y, y0)
 		Y++;
 		stoppingY += twoASq;
 		err = BSqXSq + ASq * Y * Y - ABSq + stoppingY + ASq;
@@ -207,7 +207,7 @@ function drawEllipse(pos) {
 	var stoppingX = 0;
 	var stoppingY = twoASq * Y;
 	while (stoppingY > stoppingX) {
-		setPoints(X,x0,Y,y0)
+		setPoints(X, x0, Y, y0)
 		X++;
 		stoppingX += twoBSq;
 		err = ASqYSq + BSq * X * X - ABSq + stoppingY + ASq;
@@ -217,51 +217,48 @@ function drawEllipse(pos) {
 			ASqYSq = ASq * Y * Y;
 		}
 	}
-function setPoints(X,x0,Y,y0){
-	setPixel(X + x0, Y + y0);
-	setPixel(-X + x0, Y + y0);
-	setPixel(-X + x0, -Y + y0);
-	setPixel(X + x0, -Y + y0);
+	function setPoints(X, x0, Y, y0) {
+		setPixel(X + x0, Y + y0);
+		setPixel(-X + x0, Y + y0);
+		setPixel(-X + x0, -Y + y0);
+		setPixel(X + x0, -Y + y0);
+	}
 }
-/*console.log(incl);
-ctx.beginPath();
-ctx.ellipse(initialPoint.x, initialPoint.y, rX, rY, incl, 0, 2 * Math.PI);
-ctx.stroke();*/
-}
-function drawPoly(pos){
-	
-	var coordinates =[];
+function drawPoly(pos) {
+	var coordinates = [];
 	var r = Math.sqrt(Math.pow((initialPoint.x - pos.x), 2) + Math.pow((initialPoint.y - pos.y), 2));
-	
-	var sides=document.getElementById("numberOfSidesV").value;
-	var angle=(Math.PI)/sides;
-	for(var i=0;i<sides;i++){
-		coordinates.push({x:(initialPoint.x + r*Math.cos(angle)),y:(initialPoint.y - r*Math.sin(angle))});
-		angle=angle+((2*Math.PI)/sides);
+
+	var sides = document.getElementById("numberOfSidesV").value;
+	var angle = (Math.PI) / sides;
+	for (var i = 0; i < sides; i++) {
+		coordinates.push({
+			x : (initialPoint.x + r * Math.cos(angle)),
+			y : (initialPoint.y - r * Math.sin(angle))
+		});
+		angle = angle + ((2 * Math.PI) / sides);
 	}
 	ctx.beginPath();
-	ctx.strokeStyle=document.getElementById("strokeColor").value;
+	ctx.strokeStyle = document.getElementById("strokeColor").value;
 	ctx.moveTo(coordinates[0].x, coordinates[0].y);
-	for(var i=0;i<sides;i++){
-		ctx.lineTo(coordinates[i].x, coordinates[i].y)
-		//drawLine(coordinates[i]);
+	for (var i = 0; i < sides; i++) {
+		ctx.lineTo(coordinates[i].x, coordinates[i].y);
 	}
 	ctx.closePath();
 	ctx.stroke();
 }
-function drawRectangle(pos){
+function drawRectangle(pos) {
 	var h = Math.sqrt(Math.pow((initialPoint.x - pos.x), 2) + Math.pow((initialPoint.y - initialPoint.y), 2));
 	var w = Math.sqrt(Math.pow((pos.x - pos.x), 2) + Math.pow((initialPoint.y - pos.y), 2));
 	ctx.beginPath();
 	ctx.strokeStyle = document.getElementById("strokeColor").value;
-    ctx.rect(initialPoint.x, initialPoint.y, h,  w);
-    console.log(initialPoint.x,initialPoint.y, h,w);
-    ctx.closePath();
-    ctx.stroke();
+	ctx.rect(initialPoint.x, initialPoint.y, h, w);
+	console.log(initialPoint.x, initialPoint.y, h, w);
+	ctx.closePath();
+	ctx.stroke();
 }
-function drawPolyln(pos){
+function drawPolyln(pos) {
 	drawLine(pos);
-	
+
 }
 
 //UI functions
@@ -273,14 +270,14 @@ function showForm(obj) {
 		drawEll = false;
 		drawPolygon = false;
 		drawPolyline = false;
-		drawRect=false;
+		drawRect = false;
 		polygonRange.style.display = "none";
 	} else if (obj.value === 'circle') {
 		drawLn = false;
 		drawCirc = true;
 		drawEll = false;
 		drawPolygon = false;
-		drawRect=false;
+		drawRect = false;
 		drawPolyline = false;
 		polygonRange.style.display = "none";
 	} else if (obj.value === 'ellipse') {
@@ -289,7 +286,7 @@ function showForm(obj) {
 		drawEll = true;
 		drawPolygon = false;
 		drawPolyline = false;
-		drawRect=false;
+		drawRect = false;
 		polygonRange.style.display = "none";
 	} else if (obj.value === 'polygon') {
 		drawLn = false;
@@ -297,7 +294,7 @@ function showForm(obj) {
 		drawEll = false;
 		drawPolygon = true;
 		drawPolyline = false;
-		drawRect=false;
+		drawRect = false;
 		polygonRange.style.display = "block";
 	} else if (obj.value === 'polyline') {
 		drawLn = false;
@@ -305,15 +302,16 @@ function showForm(obj) {
 		drawEll = false;
 		drawPolygon = false;
 		drawPolyline = true;
-		drawRect=false;
+		drawRect = false;
+		initialPoint = 0;
 		polygonRange.style.display = "none";
-	}else if (obj.value === 'rectangle') {
+	} else if (obj.value === 'rectangle') {
 		drawLn = false;
 		drawCirc = false;
 		drawEll = false;
 		drawPolygon = false;
 		drawPolyline = false;
-		drawRect=true;
+		drawRect = true;
 		polygonRange.style.display = "none";
 	}
 }
@@ -369,6 +367,8 @@ function clearPixel(x, y) {
 	d[3] = 255;
 	ctx.putImageData(pixId, x, y);
 }
-function clearCanvas(){
-	ctx.clearRect(0, 0, canvas.width, canvas.height)
+function clearCanvas() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	initialPoint = 0;
+
 }

@@ -9,3 +9,9 @@ if Polyline is selected
 
 1. Click on the point to inidicate the start
 2. Click on canvas to select further points of the poly line
+
+
+Source:
+CSS used from
+1. http://www.cssportal.com
+2. https://www.w3schools.com
