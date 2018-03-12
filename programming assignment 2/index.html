@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial;}
+</style>
+ <link rel="stylesheet" href="style.css">
+<script src="scripts.js"></script>
+<script src="scripts2.js"></script>
+</head>
+<body>
+
+<p>Computer Graphics Assignment-2:</p>
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'F1')">Fractals</button>
+  <button class="tablinks" onclick="openCity(event, 'F2')">Ipsalege DMV</button>
+  <button class="tablinks" onclick="openCity(event, 'F3')">Fracta-2</button>
+</div>
+
+<div id="F1" class="tabcontent">
+  <h3>Primitive</h3>
+  <div id="primitive">
+  <input type="radio" name="shape" value="line" onclick="drawFract(0)">
+		Line <input type="radio"
+			name="shape" value="ellipse" onclick="drawArcFract(5)">
+		Arc 
+  </div>
+  <div id="itrRange">
+    <input id="itSld" type ="range" min ="0" max="7" step ="1" value ="0"
+       oninput="numberOfIterTb.value = itSld.value;drawFract(itSld.value)">
+       Iterations: <input type="text" name="numberOfIterTb" id="numberOfIterTb" value='0'  maxlength="2" size="2" oninput="itSld.value=numberOfIterTb.value" onchange="drawFract(this.value)"> </input>
+  </div>
+  <div id="fractionRange">
+    <input id="frSld" type ="range" min ="2" max="10" step ="1" value ="2"
+       oninput="fraction.value = frSld.value">
+       Ratio: 1/<output  name="fraction" id="fraction" value='2'>2</output>
+  </div>
+  <p><canvas id="fractCan_F1" width="1200" height="400" style="border:1px solid #d3d3d3;"></p>
+</div>
+
+<div id="F2" class="tabcontent">
+  <h3>Ipsalege DMV</h3>
+  <div id="sizerange">
+ 	Wheel Size(inch):<output  name="sizeopt" id="sizeopt" >16</output><br/>
+    <input id="sizeSld" type ="range" min ="14" max="26" step ="1" value ="16"
+       oninput="sizeopt.value = sizeSld.value" onchange="drawWheel(this)">
+  </div>
+  <div id="scorerange">
+  Score:<output  name="score" id="score" value="100">100</output><br/>
+    <input id="scoreSld" type ="range" min ="3" max="100" step ="1" value ="100"
+       oninput="score.value = scoreSld.value" onchange="updateWheel(this)">
+  </div>
+  <p><span><canvas id="dmv_1" width="600" height="600" style="border:2px solid #d3d3d3;"></canvas></span>
+  <span><canvas id="dmv_2" width="600" height="600" style="border:2px solid #d3d3d3;"></canvas></span></p> 
+</div>
+
+<div id="F3" class="tabcontent">
+  <h3>Fractal 3</h3>
+  <p><canvas id="fractCan_F3" width="1200" height="400" style="border:3px solid #d3d3d3;"></p>
+</div>
+
+     
+</body>
+</html> 
