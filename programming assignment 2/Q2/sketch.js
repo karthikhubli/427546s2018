@@ -26,11 +26,15 @@ function setup() {
 }
 
 function draw() {
-    background(200,220,220);
+    background(230);
 	translate(700,400);
-    stroke(255);
+    stroke(0);
     strokeWeight(4);
     line(0,-400,0,300)
+    textSize(20);
+    strokeWeight(1)
+    text('Wheel after correction', 20, -370);
+    text('Wheel before correction', -680, -370);
     drawAcualWheel();
     drawNewWheel();
     //noLoop();
