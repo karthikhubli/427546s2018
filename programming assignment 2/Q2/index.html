@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.js"></script>
+	<script src ="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+      <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+<div>
+<h3>DMV Tool</h3>
+ <div id="itrRange">
+    <input id="itSld" type ="range" min ="8" max="26" step ="1" value ="8"
+       oninput="wheelSize.value = itSld.value;updateValues()">
+       Wheel size(Diameter): <output name="wheelSize" id="wheelSize" >8</output>
+
+    <input id="frSld" type ="range" min ="3" max="100" step ="1" value ="100"
+       oninput="drScore.value = frSld.value;updateValues()">
+       Score: <output  name="drScore" id="drScore" >100</output>
+  </div>
+  <div>
+  <button type="button" onclick="resetScore()">Reset</button>
+  </div>
+    </div>
+  </body>
+</html>

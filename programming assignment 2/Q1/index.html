@@ -1,0 +1,34 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+<script src="sketch.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div>
+		<h3>Fractal Generator</h3>
+		<div id="primitive">
+			<input type="radio" name="shape" value="line" onclick="updatePrim(0)">
+			Line <input type="radio" name="shape" value="ellipse"
+				onclick="updatePrim(1)"> Arc<input type="radio" name="shape" value="ellipse"
+				onclick="updatePrim(2)"> Triangle
+		</div>
+		<div id="itrRange">
+			<input id="itSld" type="range" min="0" max="7" step="1" value="0"
+				oninput="numberOfIterTb.value = itSld.value;init()">
+			Iterations:
+			<output name="numberOfIterTb" id="numberOfIterTb"
+				oninput="itSld.value=numberOfIterTb.value">
+				<!-- </output> <input id="frSld" type="range" min="2" max="5" step="1" value="2"
+					oninput="fraction.value = frSld.value;init()"> Ratio: 1/
+				<output name="fraction" id="fraction">2</output> -->
+		</div>
+		<div><button onclick="resetPage()"">reset</button></div>
+		<div>
+			<canvas id="myCanvas" width="1000" height="500" style="border:1px solid #000000;"></canvas>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.js"></script>
+	<script src ="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+    <script src="sketch.js"></script>
+      <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+<div>
+<h3>Fractal Generator</h3>
+<div id="primitive">
+  <input type="radio" name="shape" value="line" onclick="drawFract(0)">
+		Line <input type="radio"
+			name="shape" value="ellipse" onclick="drawArcFract(5)">
+		Arc 
+  </div>
+ <div id="itrRange">
+    <input id="itSld" type ="range" min ="0" max="5" step ="1" value ="0"
+       oninput="numberOfIterTb.value = itSld.value;drawFract(itSld.value)">
+       Iterations: <input type="text" name="numberOfIterTb" id="numberOfIterTb" value='0'  maxlength="2" size="2" oninput="itSld.value=numberOfIterTb.value"> </input>
+
+    <input id="frSld" type ="range" min ="2" max="5" step ="1" value ="2"
+       oninput="fraction.value = frSld.value">
+       Ratio: 1/<output  name="fraction" id="fraction" value='2'>2</output>
+  </div>
+    </div>
+  </body>
+</html>
