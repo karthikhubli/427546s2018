@@ -31,11 +31,21 @@ function lineFractal(A, B, depth){
     }
     var C = divide(add(prod(A, 2), B), 3);
     var D = divide(add(prod(B, 2), A), 3);
+    
+    var AC=thirdPoint(A, C);
+    var CD= thirdPoint(C, D)
+    var DB =thirdPoint(D, B)
+    
+    
+    
     var F = divide(add(A, B), 2);
     var V1 = divide(subt(F, A), pointDist(F, A));
     var V2 = [V1[1], -V1[0]];
     var E = add(prod(V2, Math.sqrt(3)/6 * pointDist(B, A)), F);
-    fractLine(A, B, colors[depth]);
+    fractLine(A, AC, colors[depth]);
+    fractLine(AC, C, colors[depth]);
+    fractLine(C, CD, colors[depth]);
+    fractLine(CD, D, colors[depth]);
     if (depth !=0){
         for (var i=0;i<10;i++)
             fractLine(C, D, "white");
@@ -112,7 +122,9 @@ function pointDist(a, b){
 function midPoint(a,b){
 	return [(a[0]+b[0])/2,(a[1]+b[1])/2]
 }
-
+function thirdPoint(A,C){
+	return [(A[0]+C[0])/2,Math.sqrt(3)*((A[1]+C[1])/2)];
+}
 function fractLine(a, b, c){
     context.beginPath();
     context.strokeStyle = c;
