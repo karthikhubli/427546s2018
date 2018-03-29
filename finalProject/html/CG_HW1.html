@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CG Assignment-1</title>
+<meta name="description" content="The HTML5 Herald">
+<meta name="author" content="SitePoint">
+<link rel="stylesheet" href="../css/finalProj-style.css">
+</head>
+
+<body style="background-color:hsl(0, 0%, 95%);">
+	<h1 align="center">Computer Graphics-Final Project</h1>
+	<!-- <div>
+		<input type="radio" name="shape" value="line" onclick="showForm(this)">
+		Line <input type="radio" name="shape" value="circle"
+			onclick="showForm(this)"> Circle <input type="radio"
+			name="shape" value="ellipse" onclick="showForm(this)">
+		Ellipse <input type="radio" name="shape" value="polygon"
+			onclick="showForm(this)"> Reg polygon <input type="radio"
+			name="shape" value="rectangle" onclick="showForm(this)">
+		Rectangle<input type="radio"
+			name="shape" value="polyline" onclick="showForm(this)">
+		Polyline
+	</div>-->
+	<div>Stroke:<input type="color" id="strokeColor"></div>
+	<!-- <div id="polygonRange" style="display:none">
+		<input type="range" min="3" max="15" value="3" class="slider"
+			id="numberOfSides" oninput="numberOfSidesV.value = numberOfSides.value"><br/>
+			Number of sides:-<output name="numberOfSidesV" id="numberOfSidesV" value='3'>3  </output>
+			
+	</div> -->
+	<br />
+	<div>
+		<button type="button" onclick="clearCanvas()">Clear</button>
+	</div>
+
+	<br />
+	<div>
+	<canvas id="myMCanvas"
+		style="border: 1px solid #A00000; background-color: #aee5f9;" allign="center"></canvas>
+		<canvas id="myXCanvas"
+		style="border: 1px solid #A00000; background-color: #afe5f9;" allign="center"></canvas><br/>
+		<canvas id="myYCanvas"
+		style="border: 1px solid #A00000; background-color: #bee509;" allign="center"></canvas>
+		<canvas id="myZCanvas"
+		style="border: 1px solid #A00000; background-color: #ade509;" allign="center"></canvas>
+		
+		</div>
+	<script src="../scripts/finalProj-scripts.js"></script>
+</body>
+</html>
