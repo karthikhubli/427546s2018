@@ -1,0 +1,94 @@
+<html>
+<head>
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+
+.tooltip {
+	position: relative;
+	display: inline-block;
+	border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: cyan;
+	color: #000;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 0;
+	/* Position the tooltip */
+	position: absolute;
+	z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.min.js"></script>
+<script src="../scripts/sketch.js"></script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>
+				<h3>Rotate</h3> Y: <input type="range" min="0" max="180" value="0"
+				class="slider" id="angleY"> Z: <input type="range" min="0"
+				max="180" value="0" class="slider" id="angleZ"> X: <input
+				type="range" min="0" max="180" value="0" class="slider" id="angleX">
+			</td>
+			<td>
+				<h3>Light</h3> Ambient: <input type="radio" checked name="light"
+				value="ambient" onclick="updateLight(this)"> PointScource: <input
+				type="radio" name="light" value="point" onclick="updateLight(this)">
+				Color:<input type="color" name="lightColor" value="#4580ba"
+				onChange="updateColor(this.value)">
+			</td>
+			<td><h3>Camera</h3>
+			<div class='tooltip'>
+			<span class="tooltiptext">Field of view</span>
+			 FoV: </div><input type="range" min="0" max="18" value="6"
+				class="slider" id="fov">
+				Position <input type="range" min="0" max="24" value="12"
+				class="slider" id="camX"></td>
+			
+
+		</tr>
+		<tr>
+			<td>
+				<h3>Shear</h3>
+			</td>
+			<td>
+				<h3>Projection</h3> Orthographic: <input type="radio"
+				name="projectionType" value="orthoP"
+				onclick="updateProj(this.value)"> 3-D: <input
+				type="radio" checked name="projectionType" value="regularP"
+				onclick="updateProj(this.value)">
+			</td>
+			<td><h3>Other</h3></td>
+
+		</tr>
+	</table>
+	<!-- <div><h1>3D view</h1></div>
+  <div>
+  <h3>Rotate</h3>
+   Y:<input type="range" min="0" max="180" value="0" class="slider"
+			id="angleY">
+   Z:<input type="range" min="0" max="180" value="0" class="slider"
+			id="angleZ">
+   X:<input type="range" min="0" max="180" value="0" class="slider"
+			id="angleX"><br>
+ </div>
+ <div>
+ <h3>Light</h3>
+ Ambient:<input type="radio" name="light" value="ambient" onclick="updateLight(this)">
+		PointScource: <input type="radio" name="light" value="point" checked
+			onclick="updateLight(this)">
+ </div> -->
+</body>
+</html>
