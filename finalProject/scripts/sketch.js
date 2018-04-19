@@ -56,11 +56,11 @@ function draw() {
 	translate(camX, 0)
 	box(250, 125, 125);
 	pop()
-	ambientMaterial(51)
+/*	ambientMaterial(51)
 	translate(camX,150)
 	rotateX(90)
 	if(!orthoProj){
-	plane(600,600)}
+	plane(600,600)}*/
 	
 	
 
