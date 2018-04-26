@@ -4,19 +4,23 @@ let angleX = 0;
 let plant;
 let ambLight=true;
 let ptLight=false;
-let lightColor=[69,128,186];
+let lightColor=[250,250,250];
 let orthoProj=false;
 let camZ=0;
 let CamX=-200
 let fov=0;
+let shapeType='table'
+let extModel;
 
 function preload() {
-	// plant=loadModel('teapot.obj',false);
+	img = loadImage('wood.jpeg');
+	extModel=loadModel('table.obj',false);
 }
 function setup() {
 	angleMode(DEGREES)
 	createCanvas(1200, 600, WEBGL);
 	if(orthoProj){
+		console.log('setting ortho')
 	ortho(-width / 2, width / 2, height / 2, -height / 2, 0, 1200);
 	}
 	camZ=(height/2)/(tan(30))
@@ -37,13 +41,15 @@ function draw() {
 		pointLight(0, 0, 0, -200, 0, 175);
 		ambientLight(lightColor[0], lightColor[1], lightColor[2]);
 	}
-	//camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0, 1, 0);
+	// camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0,
+	// 1, 0);
 	fov=map(document.getElementById('fov').value,0,18,0,PI)
 	background(200);
 	rectMode(CENTER);
+	//perspective(fov,width/height,camZ/10.0,camZ*10.0)
 	perspective(fov,width/height,camZ/10.0,camZ*10.0)
 	push()
-	perspective(fov,width/height,camZ/10.0,camZ*10.0)
+	
 	angleY = document.getElementById('angleY').value
 	rotateY(angleY);
 	angleZ = document.getElementById('angleZ').value
@@ -52,15 +58,25 @@ function draw() {
 	rotateX(angleX);
 	
 	
-	specularMaterial(255, 255, 255);
-	translate(camX, 0)
-	box(250, 125, 125);
+	ambientMaterial(250);
+	
+	translate(camX, 0,0)
+	if(shapeType =='table'){
+		model(extModel);
+	} if(shapeType =='cube'){
+		texture(img);
+		box(250, 125, 125);
+	}else if(shapeType =='sphere'){
+		texture(img);
+		sphere(80)
+	}
+	
+	
 	pop()
-/*	ambientMaterial(51)
-	translate(camX,150)
-	rotateX(90)
-	if(!orthoProj){
-	plane(600,600)}*/
+/*
+ * ambientMaterial(51) translate(camX,150) rotateX(90) if(!orthoProj){
+ * plane(600,600)}
+ */
 	
 	
 
@@ -74,6 +90,10 @@ function updateLight(obj){
 		ambLight=true;
 		ptLight=false;
 	}
+}
+function updateShapeType(obj){
+	shapeType=obj.value;
+	
 }
 function updateColor(color){
 	console.log(color)
