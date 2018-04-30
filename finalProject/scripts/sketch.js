@@ -11,9 +11,13 @@ let CamX=-200
 let fov=0;
 let shapeType='table'
 let extModel;
+let text='w'
 
 function preload() {
-	img = loadImage('wood.jpeg');
+	img1 = loadImage('wood.jpeg');
+	img2 = loadImage('stone.jpg');
+	img3 = loadImage('graphene.jpg');
+	img4 = loadImage('fabric.jpg');
 	extModel=loadModel('table.obj',false);
 }
 function setup() {
@@ -41,45 +45,53 @@ function draw() {
 		pointLight(0, 0, 0, -200, 0, 175);
 		ambientLight(lightColor[0], lightColor[1], lightColor[2]);
 	}
-	// camera(mouseX, height/2, (height/2) / tan(PI/6), width/2, height/2, 0, 0,
-	// 1, 0);
+
 	fov=map(document.getElementById('fov').value,0,18,0,PI)
 	background(200);
 	rectMode(CENTER);
-	//perspective(fov,width/height,camZ/10.0,camZ*10.0)
 	perspective(fov,width/height,camZ/10.0,camZ*10.0)
-	push()
 	
+	
+	push()
 	angleY = document.getElementById('angleY').value
 	rotateY(angleY);
 	angleZ = document.getElementById('angleZ').value
 	rotateZ(angleZ);
 	angleX = document.getElementById('angleX').value
 	rotateX(angleX);
+/*	shear_X=document.getElementById('shearX').value
+	//shearX(shear_X)
+	shear_Y=document.getElementById('shearY').value
+	//shear(shear_Y)
+	scaleX=shear_Y=document.getElementById('scaleX').value
+	scaleY=shear_Y=document.getElementById('scaleY').value
+	scale(scaleX,scaleY)*/
+	translate(camX, 0,0);
+	if(text == 'w'){
+		texture(img1)
+	}else if(text == 'f'){
+		texture(img4)
+	}
+	else if(text == 'g'){
+		texture(img3)
+	}else if(text == 's'){
+		texture(img2)
+	}else{
+		texture(img1)
+	}
 	
-	
-	ambientMaterial(250);
-	
-	translate(camX, 0,0)
 	if(shapeType =='table'){
 		model(extModel);
 	} if(shapeType =='cube'){
-		texture(img);
 		box(250, 125, 125);
 	}else if(shapeType =='sphere'){
-		texture(img);
 		sphere(80)
+	}else if(shapeType =='cone'){
+		cone(70,120)
+	}else if(shapeType =='torus'){
+		torus(75, 25);
 	}
-	
-	
 	pop()
-/*
- * ambientMaterial(51) translate(camX,150) rotateX(90) if(!orthoProj){
- * plane(600,600)}
- */
-	
-	
-
 }
 function updateLight(obj){
 	console.log(obj.value)
@@ -108,6 +120,9 @@ function updateProj(proType){
 		orthoProj=false;
 	}
 	setup();
+}
+function updateTexture(obj){
+	text=obj.value;
 }
 function hexToRGB(colour) {
 	var r,

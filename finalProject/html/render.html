@@ -45,50 +45,48 @@ table, th, td {
 			</td>
 			<td>
 				<h3>Light</h3> Ambient: <input type="radio" checked name="light"
-				value="ambient" onclick="updateLight(this)"> PointScource:
-				<input type="radio" name="light" value="point"
-				onclick="updateLight(this)"> Color:<input type="color"
-				name="lightColor" value="#ffffff" onChange="updateColor(this.value)">
+				value="ambient" onclick="updateLight(this)"> PointScource: <input
+				type="radio" name="light" value="point" onclick="updateLight(this)">
+				Color:<input type="color" name="lightColor" value="#ffffff"
+				onChange="updateColor(this.value)">
 			</td>
 			<td><h3>Camera</h3>
 				<div class='tooltip'>
 					<span class="tooltiptext">Field of view</span> FoV:
-				</div>
-				<input type="range" min="0" max="18" value="6" class="slider"
+				</div> <input type="range" min="0" max="18" value="6" class="slider"
 				id="fov"> Position <input type="range" min="0" max="24"
 				value="12" class="slider" id="camX"></td>
-
-
 		</tr>
-		<!-- 		<tr>
+<!-- 		<tr>
 			<td>
-				<h3>Shear</h3>
+				<h3>Shear</h3> X: <input type="range" min="0" max="180" value="0"
+				class="slider" id="shearX">Y: <input type="range" min="0"
+				max="180" value="0" class="slider" id="shearY">
 			</td>
 			<td>
-				<h3>Projection</h3> Orthographic: <input type="radio"
-				name="projectionType" value="orthoP"
-				onclick="updateProj(this.value)"> 3-D: <input
-				type="radio" checked name="projectionType" value="regularP"
-				onclick="updateProj(this.value)">
+				<h3>Scale</h3> X: <input type="range" min="0" max="180" value="0"
+				class="slider" id="scaleX">Y: <input type="range" min="0"
+				max="180" value="0" class="slider" id="scaleY">
 			</td>
-			<td><h3>Texture</h3></td>
-
 		</tr> -->
 		<tr>
-			<td colspan=3><h3>Choose Shape</h3> Cube: <input type="radio"
+			<td colspan=2><h3>Choose Shape</h3> Cube: <input type="radio"
 				name="shape" value="cube" onclick='updateShapeType(this)'>
 				Sphere: <input type="radio" name="shape" value="sphere"
-				onclick='updateShapeType(this)'> Table: <input type="radio"
+				onclick='updateShapeType(this)'> Cone: <input type="radio"
+				name="shape" value="cone" onclick='updateShapeType(this)'>
+				Torus: <input type="radio" name="shape" value="torus"
+				onclick='updateShapeType(this)'>Table: <input type="radio"
 				name="shape" checked value="table" onclick='updateShapeType(this)'>
-
-
 			</td>
-		</tr>
-		<tr>
-			<td colspan=3><h3>Enter coordinates</h3> X: <input type="text"
-				name="xCor"> Y: <input type="text" name="yCor"> Z: <input
-				type="text" name="zCor">
-				<button type="button">Add</button></td>
+			<td colspan=1><h3>Choose Texture</h3> Wood: <input type="radio"
+				name="shape" value="w" onclick='updateTexture(this)' checked>
+				Stone: <input type="radio" name="shape" value="s"
+				onclick='updateTexture(this)'> Fabric: <input type="radio"
+				name="shape" checked value="f" onclick='updateTexture(this)'>
+				Graphene: <input type="radio" name="shape" checked value="g"
+				onclick='updateTexture(this)'></td>
+
 		</tr>
 	</table>
 	<!-- <div><h1>3D view</h1></div>
